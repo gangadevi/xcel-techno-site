@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+
+  /* Brand colors taken from the Xcel Techno logo */
+  --color-ink: #0b1530;
+  --color-deep: #070e22;
+  --color-navy: #14275f;
+  --color-brand: #284696;
+  --color-tealdark: #0b7f97;
+  --color-teal: #0e8fb0;
+  --color-blue: #0f9cc2;
+  --color-cyan: #0eaee0;
+  --color-sky: #2bbdf0;
+  --color-mist: #f4f9fc;
+  --color-soft: #c7d6ee;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  @apply bg-ink font-sans text-white antialiased;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-sky);
+  outline-offset: 3px;
+}

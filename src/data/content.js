@@ -14,9 +14,9 @@ export const brand = {
 
 // EmailJS settings (emailjs.com). Paste your own IDs here.
 export const emailConfig = {
-  serviceId: 'YOUR_SERVICE_ID',
-  templateId: 'YOUR_TEMPLATE_ID',
-  publicKey: 'YOUR_PUBLIC_KEY',
+  serviceId: 'service_a52a4uf',
+  templateId: 'template_31bflen',
+  publicKey: 'ZMs-kSlP03NOGmLoX',
 }
 
 export const navLinks = [

@@ -1,30 +1,30 @@
 import { brand } from '../data/content.js'
 
-export default function Hero() {
+export default function Hero({ onOpenEnquiry }) {
   return (
-    <section id="top" className="relative isolate overflow-hidden">
-      {/* Background image: replace /public/hero-bg.svg or change brand.heroImage in content.js */}
+    <section id="top" className="hero-section relative isolate overflow-hidden">
+      {/* Background image: change brand.heroImage in content.js */}
       <div
         className="absolute inset-0 -z-20 bg-cover bg-center"
         style={{ backgroundImage: `url('${brand.heroImage}')` }}
         aria-hidden="true"
       />
       {/* Dark overlay keeps the text readable on any photo */}
-      <div className="absolute inset-0 -z-10 bg-ink/80" aria-hidden="true" />
+      <div className="hero-section__overlay absolute inset-0 -z-10" aria-hidden="true" />
 
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-14 px-6 pb-28 pt-16 lg:flex-row lg:px-10 lg:pt-20">
-        <div className="flex-1">
-          <p className="mb-4 text-sm font-bold tracking-widest text-sky">Digital and print, under one roof</p>
-          <h1 className="mb-6 text-4xl font-extrabold leading-[1.08] sm:text-5xl lg:text-6xl">
+        <div className="hero-intro flex-1">
+          <p className="hero-load-item mb-4 text-sm font-bold tracking-widest text-sky">Digital and print, under one roof</p>
+          <h1 className="hero-load-item mb-6 text-4xl font-extrabold leading-[1.08] sm:text-5xl lg:text-6xl">
             Websites and print that make your brand look premium.
           </h1>
-          <p className="mb-9 max-w-xl text-lg leading-relaxed text-soft">
+          <p className="hero-load-item mb-9 max-w-xl text-lg leading-relaxed text-soft">
             Fast, mobile-first websites and quality printing for growing businesses.
           </p>
-          <div className="flex flex-wrap gap-4">
-            <a href="#contact" className="inline-flex min-h-11 items-center rounded-xl bg-sky px-8 py-4 font-bold text-ink transition hover:bg-cyan">
+          <div className="hero-load-item flex flex-wrap gap-4">
+            <button type="button" onClick={onOpenEnquiry} className="inline-flex min-h-11 items-center rounded-xl bg-sky px-8 py-4 font-bold text-ink transition hover:bg-cyan">
               Send an enquiry
-            </a>
+            </button>
             <a href="#work" className="inline-flex min-h-11 items-center rounded-xl border-2 border-white/50 px-8 py-4 font-semibold transition hover:border-sky hover:text-sky">
               View recent work
             </a>
@@ -32,7 +32,7 @@ export default function Hero() {
         </div>
 
         {/* Decorative browser + phone preview */}
-        <div className="relative min-h-[380px] w-full max-w-md flex-1" aria-hidden="true">
+        <div className="hero-preview relative hidden min-h-[380px] w-full max-w-md flex-1 md:block" aria-hidden="true">
           <div className="absolute left-0 top-5 w-[66%] overflow-hidden rounded-2xl bg-white shadow-2xl shadow-black/50">
             <div className="h-7 bg-tealdark" />
             <div className="p-5">

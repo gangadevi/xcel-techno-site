@@ -4,10 +4,10 @@ export default function Section({ id, eyebrow, title, light = false, className =
     <section id={id} className={className}>
       <div className="mx-auto max-w-6xl px-6 py-24 lg:px-10">
         {eyebrow && (
-          <p className={`mb-3 text-sm font-bold tracking-widest ${light ? 'text-tealdark' : 'text-sky'}`}>{eyebrow}</p>
+          <p data-reveal="up" className={`mb-3 text-sm font-bold tracking-widest ${light ? 'text-tealink' : 'text-sky'}`}>{eyebrow}</p>
         )}
         {title && (
-          <h2 className={`mb-11 max-w-2xl text-3xl font-extrabold sm:text-4xl ${light ? 'text-navy' : 'text-white'}`}>
+          <h2 data-reveal="up" data-reveal-delay="80" className={`mb-11 max-w-2xl text-3xl font-extrabold sm:text-4xl ${light ? 'text-navy' : 'text-white'}`}>
             {title}
           </h2>
         )}

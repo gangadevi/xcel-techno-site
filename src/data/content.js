@@ -1,45 +1,111 @@
 // Edit all website text here. Items in [BRACKETS] are placeholders.
 
 export const brand = {
-  name: 'Xcel Techno',
-  email: '[EMAIL]',
-  phone: '[PHONE / WHATSAPP]',
-  location: '[LOCATION]',
-  replyTime: '[24 HOURS]',
-  heroImage: '/hero-bg.svg',
+  name: 'Xcel Techno Solutions',
+  email: 'xceltechno.blr@gmail.com',
+  phone: '+91 88927 23958', // shown on the page
+  phoneLink: '+918892723958', // used for tel: links
+  whatsapp: '918892723958', // country code + number, no + or spaces
+  whatsappMessage: 'Hi, I would like to enquire about a project.',
+  location: 'BTM Layout, Bangalore',
+  replyTime: '24 hours',
+  heroImage: '/hero-watermark-subtle.jpg',
+}
+
+// EmailJS settings (emailjs.com). Paste your own IDs here.
+export const emailConfig = {
+  serviceId: 'YOUR_SERVICE_ID',
+  templateId: 'YOUR_TEMPLATE_ID',
+  publicKey: 'YOUR_PUBLIC_KEY',
 }
 
 export const navLinks = [
+  { label: 'About', href: '#about' },
   { label: 'Services', href: '#services' },
+  { label: 'Our work', href: '#work' },
   { label: 'Printing', href: '#printing' },
-  { label: 'Work', href: '#work' },
-  { label: 'Process', href: '#process' },
-  { label: 'Blog', href: '#blog' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Contact us', href: '#contact' },
 ]
 
-export const stats = [
-  { value: '[2+]', label: 'Projects delivered', tone: 'text-white' },
-  { value: '[7–14]', label: 'Days to launch', tone: 'text-sky' },
-  { value: '6+ yrs', label: 'Web Development experience', tone: 'text-white' },
-  { value: '100%', label: 'Mobile-friendly', tone: 'text-sky' },
-]
+export const about = {
+  eyebrow: 'About us',
+  heading: 'Help small businesses look professional and get more customers online.',
+  promise: 'A clear process, on-time delivery and support after launch.',
+  whyHeading: 'Why choose us',
+  features: [
+    { title: 'Web and print under one roof', text: 'Keep your digital and printed brand consistent.', accent: 'bg-tealdark' },
+    { title: 'Mobile-first design', text: 'Make your website work beautifully on every screen.', accent: 'bg-teal' },
+    { title: 'Clear process and pricing', text: 'Know what to expect at every step of your project.', accent: 'bg-blue' },
+    { title: 'Support after launch', text: 'Get help keeping your website up to date.', accent: 'bg-cyan' },
+  ],
+  callToAction: 'Ready to talk about your project?',
+  buttonText: 'Send an enquiry',
+}
 
 export const services = [
-  { title: 'Small business websites', text: 'Simple, affordable sites that put your shop or service online.', bar: 'bg-tealdark' },
-  { title: 'Company profile websites', text: 'A professional home for your brand, team and portfolio.', bar: 'bg-teal' },
-  { title: 'Service-based websites', text: 'Show your services and take enquiries or bookings.', bar: 'bg-blue' },
-  { title: 'Landing pages', text: 'One focused page built to turn visitors into leads.', bar: 'bg-cyan' },
-  { title: 'Website redesign', text: 'Refresh an old site: faster, cleaner, mobile-friendly.', bar: 'bg-sky' },
-  { title: 'Website maintenance', text: 'Updates, fixes and hosting support, month after month.', bar: 'bg-brand' },
+  { title: 'Small business websites', text: 'Simple, affordable sites that put your shop or service online.', icon: 'small-business-websites' },
+  { title: 'Company profile websites', text: 'A professional home for your brand, team and portfolio.', icon: 'company-profile-websites' },
+  { title: 'Service-based websites', text: 'Show your services and take enquiries or bookings.', icon: 'service-based-websites' },
+  { title: 'Landing pages', text: 'One focused page built to turn visitors into leads.', icon: 'landing-pages' },
+  { title: 'Website redesign', text: 'Refresh an old site: faster, cleaner, mobile-friendly.', icon: 'website-redesign' },
+  { title: 'Website maintenance', text: 'Updates, fixes and hosting support, month after month.', icon: 'website-maintenance' },
 ]
 
-// Edit this list to match what you really print.
 export const printItems = [
-  { title: '[Business cards]', bar: 'bg-sky' },
-  { title: '[Brochures]', bar: 'bg-cyan' },
-  { title: '[Flyers and banners]', bar: 'bg-blue' },
-  { title: '[Labels and packaging]', bar: 'bg-teal' },
+  {
+    title: 'Digital Printing',
+    description: 'Fast, high-quality printing solutions for everyday business and personal needs.',
+    icon: 'digital-printing',
+    products: [
+      'Business Cards',
+      'Flyers & Leaflets',
+      'Brochures',
+      'Posters',
+      'Invitations & Event Cards',
+      'Letterheads & Envelopes',
+      'Certificates',
+      'ID Cards',
+      'Stickers & Labels',
+    ],
+  },
+  {
+    title: 'Offset Printing',
+    description: 'Cost-effective bulk printing with consistent colours and professional finishing.',
+    icon: 'offset-printing',
+    products: [
+      'Brochures & Catalogues',
+      'Books & Magazines',
+      'Calendars & Diaries',
+    ],
+  },
+  {
+    title: 'Wide Format Printing',
+    description: 'Large-scale printing solutions to make your brand visible and stand out.',
+    icon: 'wide-format-printing',
+    products: [
+      'Flex Banners',
+      'Vinyl Printing',
+      'Roll-up Standees',
+      'Backlit Displays',
+      'Posters & Hoardings',
+      'Signage & Name Boards'
+    ],
+  },
+  {
+    title: 'Corporate Gifting',
+    description: 'Personalised corporate gifts that help businesses build meaningful relationships.',
+    icon: 'corporate-gifting',
+    products: [
+      'Custom Printed T-Shirts',
+      'Personalised Mugs',
+      'Branded Pens',
+      'Custom Diaries & Notebooks',
+      'Water Bottles',
+      'Keychains',
+      'Employee Welcome Kits',
+      'Festive & Event Gifts',
+    ],
+  },
 ]
 
 export const steps = [
@@ -49,17 +115,12 @@ export const steps = [
   { title: 'Launch and support', text: 'Go live, then keep it healthy.', border: 'border-cyan' },
 ]
 
-// Replace with real projects: add an `image` path (put files in /public) when ready.
-export const projects = [
-  { title: '[Project name]', type: '[Website type]', tile: 'bg-navy text-sky', image: '' },
-  { title: '[Project name]', type: '[Website type]', tile: 'bg-tealdark text-white', image: '' },
-  { title: '[Project name]', type: '[Print or website]', tile: 'bg-brand text-white', image: '' },
-]
+export const projectsNote = 'Concept designs showing the kind of website we build for businesses like yours.'
 
-export const posts = [
-  { tag: 'Websites', title: '5 signs your business website needs a redesign', meta: '[Date] · 4 min read' },
-  { tag: 'Growth', title: 'Why a fast mobile website brings more enquiries', meta: '[Date] · 5 min read' },
-  { tag: 'Print', title: 'Keep your brand consistent from website to print', meta: '[Date] · 3 min read' },
+export const projects = [
+  { title: 'Apex Builders', type: 'Concept project · Construction company website', image: '/recent-works/apex-builders.webp' },
+  { title: 'Fresh Bite Cafe', type: 'Concept project · Cafe and restaurant website', image: '/recent-works/fresh-bite-cafe.webp' },
+  { title: 'Zenith Fitness', type: 'Concept project · Fitness and gym website', image: '/recent-works/zenith-fitness.webp' },
 ]
 
 export const needOptions = ['A website', 'Website redesign', 'Website maintenance', 'Printing']

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" fill="none">
+  <defs>
+    <linearGradient id="base" x1="140" y1="50" x2="1460" y2="850" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fbfdff"/>
+      <stop offset="1" stop-color="#edf6fb"/>
+    </linearGradient>
+    <radialGradient id="glow-blue" cx="0" cy="0" r="1" gradientTransform="matrix(510 400 -400 510 140 70)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2bbdf0" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#2bbdf0" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-navy" cx="0" cy="0" r="1" gradientTransform="matrix(-650 -400 300 -480 1600 900)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#284696" stop-opacity=".09"/>
+      <stop offset="1" stop-color="#284696" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ribbon" x1="840" y1="900" x2="1600" y2="350" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2bbdf0" stop-opacity=".08"/>
+      <stop offset="1" stop-color="#284696" stop-opacity=".015"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#base)" d="M0 0h1600v900H0z"/>
+  <path fill="url(#glow-blue)" d="M0 0h1600v900H0z"/>
+  <path fill="url(#glow-navy)" d="M0 0h1600v900H0z"/>
+  <path fill="url(#ribbon)" d="M704 900c235-162 365-414 896-481v481H704Z"/>
+  <path stroke="#2bbdf0" stroke-opacity=".12" stroke-width="2" d="M861 900c225-174 371-357 739-426"/>
+  <path stroke="#284696" stroke-opacity=".07" stroke-width="2" d="M1009 900c201-145 359-269 591-320"/>
+</svg>

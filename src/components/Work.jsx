@@ -1,5 +1,5 @@
 import Section from './Section.jsx'
-import { projects, projectsNote, steps } from '../data/content.js'
+import { steps } from '../data/content.js'
 
 const processColors = ['#c62828', '#8dbf24', '#f4a300', '#0ba8c7']
 
@@ -22,7 +22,7 @@ const processIcons = [
 
 export default function Work() {
   return (
-    <Section id="work" eyebrow="From first idea to launch" title="A clear process, and designs to show it." className="work-process-section">
+    <Section id="work" eyebrow="From first idea to launch" title="A clear process, no surprises." className="work-process-section">
       <ol className="process-flow mb-6">
         {steps.map((s, i) => (
           <li
@@ -69,26 +69,6 @@ export default function Work() {
           </li>
         ))}
       </ol>
-      <div className="mb-6">
-        <h3 className="text-2xl font-extrabold text-navy sm:text-3xl">Concept designs</h3>
-        <p className="mt-2 max-w-2xl text-slate-600">{projectsNote}</p>
-      </div>
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {projects.map((p, i) => (
-          <article key={p.title} data-reveal="zoom-in" data-reveal-delay={i * 110} className="group">
-            <img
-              src={p.image}
-              alt={`${p.title}: ${p.type}`}
-              width="1200"
-              height="800"
-              className="portfolio-image h-48 w-full rounded-2xl object-cover shadow-md shadow-navy/10"
-              loading="lazy"
-            />
-            <h4 className="mt-4 text-lg font-bold text-navy">{p.title}</h4>
-            <p className="text-sm text-slate-600">{p.type}</p>
-          </article>
-        ))}
-      </div>
     </Section>
   )
 }

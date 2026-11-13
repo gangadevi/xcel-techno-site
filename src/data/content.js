@@ -58,11 +58,8 @@ export const printItems = [
     icon: 'digital-printing',
     products: [
       'Business Cards',
-      'Flyers & Leaflets',
       'Brochures',
-      'Posters',
       'Invitations & Event Cards',
-      'Letterheads & Envelopes',
       'Certificates',
       'ID Cards',
       'Stickers & Labels',
@@ -74,6 +71,9 @@ export const printItems = [
     icon: 'offset-printing',
     products: [
       'Brochures & Catalogues',
+      'Flyers & Leaflets',
+      'Posters & Danglers',
+      'Letterheads & Envelopes',
       'Books & Magazines',
       'Calendars & Diaries',
     ],

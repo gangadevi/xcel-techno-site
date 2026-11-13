@@ -6,7 +6,7 @@ export default function Navbar({ onOpenEnquiry }) {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-[#f3f4f5]/95 text-ink shadow-sm backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-blue-100 bg-[#eff6ff]/95 text-ink shadow-sm backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-2 lg:px-10">
         <Logo />
 
@@ -45,7 +45,7 @@ export default function Navbar({ onOpenEnquiry }) {
       </div>
 
       {open && (
-        <nav id="mobile-menu" className="border-t border-slate-200 bg-[#f3f4f5] px-6 pb-6 lg:hidden" aria-label="Mobile">
+        <nav id="mobile-menu" className="border-t border-blue-100 bg-[#eff6ff] px-6 pb-6 lg:hidden" aria-label="Mobile">
           <ul className="flex flex-col">
             {navLinks.map((l) => (
               <li key={l.href}>

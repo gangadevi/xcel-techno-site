@@ -3,7 +3,7 @@ import { about } from '../data/content.js'
 
 export default function About() {
   return (
-    <Section id="about" eyebrow={about.eyebrow} className="bg-navy">
+    <Section id="about" eyebrow={about.eyebrow} className="about-section">
       <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
         <div data-reveal="left" className="max-w-xl">
           <h2 className="mb-5 text-3xl font-extrabold leading-tight text-white sm:text-4xl">

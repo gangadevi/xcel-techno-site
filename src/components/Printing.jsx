@@ -10,9 +10,6 @@ export default function Printing({ onOpenEnquiry }) {
           <p data-reveal="up" data-reveal-delay="150" className="mb-7 max-w-2xl leading-relaxed text-soft">
             Your website and your printed materials should look like one brand. We handle both, so your colors, logo and message stay consistent.
           </p>
-          <button data-reveal="up" data-reveal-delay="210" type="button" onClick={() => onOpenEnquiry({ need: 'Printing' })} className="inline-flex min-h-11 items-center rounded-xl border-2 border-sky px-7 py-3 font-bold text-sky transition hover:bg-sky hover:text-ink">
-            Ask about printing
-          </button>
         </div>
         <div className="grid gap-6 md:grid-cols-2">
           {printItems.map((p, index) => (
@@ -48,6 +45,11 @@ export default function Printing({ onOpenEnquiry }) {
               </button> */}
             </article>
           ))}
+        </div>
+        <div className="mt-10 flex justify-end">
+          <button data-reveal="up" type="button" onClick={() => onOpenEnquiry({ need: 'Printing' })} className="inline-flex min-h-11 items-center rounded-xl border-2 border-sky px-7 py-3 font-bold text-sky transition hover:bg-sky hover:text-ink">
+            Ask about printing
+          </button>
         </div>
       </div>
     </section>

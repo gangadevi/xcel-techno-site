@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import emailjs from '@emailjs/browser'
 import { brand, needOptions, emailConfig } from '../data/content.js'
 
@@ -10,17 +10,27 @@ export function EnquiryForm({ idPrefix = 'contact', reveal = false, className = 
   const [errors, setErrors] = useState({})
   const [sent, setSent] = useState(false)
   const [sending, setSending] = useState(false)
+  const submissionInProgress = useRef(false)
 
-  const update = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
+  const update = (e) => {
+    const { name, value } = e.target
+    setForm((f) => ({ ...f, [name]: value }))
+    setErrors((current) => {
+      const next = { ...current }
+      delete next[name]
+      delete next.form
+      return next
+    })
+  }
 
   const validate = () => {
     const err = {}
     const contact = form.contact.trim()
-    const validEmail = /^\S+@\S+\.\S+$/.test(contact)
-    const validPhone = contact.replace(/\D/g, '').length >= 10
+    const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact)
     if (!form.name.trim()) err.name = 'Enter your name.'
-    if (!contact) err.contact = 'Enter an email or phone number.'
-    else if (!validEmail && !validPhone) err.contact = 'Enter a valid email or a 10-digit phone number.'
+    if (!contact) err.contact = 'Enter your email address.'
+    else if (!validEmail) err.contact = 'Enter a valid email address.'
+    if (!needOptions.includes(form.need)) err.need = 'Select what you need.'
     if (form.message.trim().length < 10) err.message = 'Tell us a little about your project (10+ characters).'
     return err
   }
@@ -29,6 +39,8 @@ export function EnquiryForm({ idPrefix = 'contact', reveal = false, className = 
 
   const onSubmit = async (e) => {
     e.preventDefault()
+    if (submissionInProgress.current || sent) return
+
     const spamTrap = e.currentTarget.elements.company?.value
     const err = validate()
     setErrors(err)
@@ -41,10 +53,10 @@ export function EnquiryForm({ idPrefix = 'contact', reveal = false, className = 
       return
     }
 
+    submissionInProgress.current = true
     setSending(true)
-    setSent(false)
     try {
-      await emailjs.send(
+      const response = await emailjs.send(
         emailConfig.serviceId,
         emailConfig.templateId,
         {
@@ -60,8 +72,12 @@ export function EnquiryForm({ idPrefix = 'contact', reveal = false, className = 
           limitRate: { id: 'enquiry', throttle: 15000 },
         },
       )
+      if (response.status < 200 || response.status >= 300) {
+        throw new Error(`EmailJS returned status ${response.status}`)
+      }
+
+      setErrors({})
       setSent(true)
-      setForm(empty)
     } catch (error) {
       setErrors({
         form: error?.status === 429
@@ -69,15 +85,16 @@ export function EnquiryForm({ idPrefix = 'contact', reveal = false, className = 
           : `Sorry, we could not send your enquiry. Please try again or call ${brand.phone}.`,
       })
     } finally {
+      submissionInProgress.current = false
       setSending(false)
     }
   }
 
   return (
-    <form data-reveal={reveal ? 'right' : undefined} data-reveal-delay={reveal ? '100' : undefined} onSubmit={onSubmit} noValidate className={`enquiry-form relative flex flex-col gap-2.5 rounded-3xl border border-white/80 bg-white/90 p-6 text-ink shadow-xl shadow-brand/10 backdrop-blur-sm sm:p-8 ${className}`}>
+    <form data-reveal={reveal ? 'right' : undefined} data-reveal-delay={reveal ? '100' : undefined} onSubmit={onSubmit} noValidate aria-busy={sending} className={`enquiry-form relative flex flex-col gap-2.5 rounded-3xl border border-white/80 bg-white/90 p-6 text-ink shadow-xl shadow-brand/10 backdrop-blur-sm sm:p-8 ${className}`}>
       {sent && (
         <p role="status" className="rounded-lg bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-800">
-          Enquiry sent. We’ll reply within {brand.replyTime}.
+          Your enquiry was sent successfully. We’ll reply within {brand.replyTime}.
         </p>
       )}
 
@@ -86,28 +103,29 @@ export function EnquiryForm({ idPrefix = 'contact', reveal = false, className = 
       )}
 
       <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
-        <input type="text" name="company" tabIndex={-1} autoComplete="off" />
+        <input type="text" name="company" tabIndex={-1} autoComplete="off" disabled={sent} />
       </div>
 
       <label htmlFor={`${idPrefix}-name`} className="text-[13px] font-semibold">Your name</label>
-      <input id={`${idPrefix}-name`} name="name" autoComplete="name" value={form.name} onChange={update} className={field} placeholder="Name" aria-invalid={!!errors.name} aria-describedby={errors.name ? `${idPrefix}-e-name` : undefined} />
+      <input id={`${idPrefix}-name`} name="name" autoComplete="name" required disabled={sent} value={form.name} onChange={update} className={field} placeholder="Name" aria-invalid={!!errors.name} aria-describedby={errors.name ? `${idPrefix}-e-name` : undefined} />
       {errors.name && <p id={`${idPrefix}-e-name`} className="text-sm text-red-700">{errors.name}</p>}
 
-      <label htmlFor={`${idPrefix}-contact`} className="text-[13px] font-semibold">Email or phone</label>
-      <input id={`${idPrefix}-contact`} name="contact" value={form.contact} onChange={update} className={field} placeholder="Email or phone" aria-invalid={!!errors.contact} aria-describedby={errors.contact ? `${idPrefix}-e-contact` : undefined} />
+      <label htmlFor={`${idPrefix}-contact`} className="text-[13px] font-semibold">Email</label>
+      <input id={`${idPrefix}-contact`} name="contact" type="email" autoComplete="email" inputMode="email" required disabled={sent} value={form.contact} onChange={update} className={field} placeholder="Email address" aria-invalid={!!errors.contact} aria-describedby={errors.contact ? `${idPrefix}-e-contact` : undefined} />
       {errors.contact && <p id={`${idPrefix}-e-contact`} className="text-sm text-red-700">{errors.contact}</p>}
 
       <label htmlFor={`${idPrefix}-need`} className="text-[13px] font-semibold">I need</label>
-      <select id={`${idPrefix}-need`} name="need" value={form.need} onChange={update} className={field}>
+      <select id={`${idPrefix}-need`} name="need" required disabled={sent} value={form.need} onChange={update} className={field} aria-invalid={!!errors.need} aria-describedby={errors.need ? `${idPrefix}-e-need` : undefined}>
         {needOptions.map((o) => <option key={o}>{o}</option>)}
       </select>
+      {errors.need && <p id={`${idPrefix}-e-need`} className="text-sm text-red-700">{errors.need}</p>}
 
       <label htmlFor={`${idPrefix}-message`} className="text-[13px] font-semibold">Message</label>
-      <textarea id={`${idPrefix}-message`} name="message" rows="4" value={form.message} onChange={update} className={field} placeholder="Tell us about your project" aria-invalid={!!errors.message} aria-describedby={errors.message ? `${idPrefix}-e-message` : undefined} />
+      <textarea id={`${idPrefix}-message`} name="message" rows="4" required disabled={sent} value={form.message} onChange={update} className={field} placeholder="Tell us about your project" aria-invalid={!!errors.message} aria-describedby={errors.message ? `${idPrefix}-e-message` : undefined} />
       {errors.message && <p id={`${idPrefix}-e-message`} className="text-sm text-red-700">{errors.message}</p>}
 
-      <button type="submit" disabled={sending} className="mt-2 min-h-11 rounded-xl bg-brand px-6 py-4 font-bold text-white transition hover:bg-navy disabled:cursor-not-allowed disabled:opacity-60">
-        {sending ? 'Sending…' : 'Send enquiry'}
+      <button type="submit" disabled={sent} className="mt-2 min-h-11 rounded-xl bg-brand px-6 py-4 font-bold text-white transition hover:bg-navy disabled:cursor-not-allowed disabled:opacity-60">
+        {sending ? 'Sending…' : sent ? 'Enquiry sent' : 'Send enquiry'}
       </button>
     </form>
   )

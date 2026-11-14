@@ -34,16 +34,6 @@ export default function About() {
           </div>
         </div>
       </div>
-
-      <div data-reveal="up" className="mt-10 flex flex-col items-start justify-between gap-5 rounded-2xl bg-white p-6 text-navy shadow-lg shadow-navy/15 sm:flex-row sm:items-center sm:px-8">
-        <p className="text-xl font-bold">{about.callToAction}</p>
-        <a
-          href="#contact"
-          className="inline-flex min-h-11 items-center justify-center rounded-xl bg-brand px-6 py-3 font-bold text-white shadow-sm transition hover:bg-navy focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
-        >
-          {about.buttonText}
-        </a>
-      </div>
     </Section>
   )
 }

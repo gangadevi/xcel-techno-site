@@ -52,7 +52,7 @@ export default function App() {
     <>
       <Navbar onOpenEnquiry={() => openEnquiry()} />
       <main>
-        <Hero onOpenEnquiry={() => openEnquiry()} />
+        <Hero />
         <Services />
         <About />
         <Work />

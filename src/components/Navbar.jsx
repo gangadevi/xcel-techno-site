@@ -1,16 +1,30 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Logo from './Logo.jsx'
 import { navLinks } from '../data/content.js'
 
 export default function Navbar({ onOpenEnquiry }) {
   const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const updateShadow = () => {
+      setScrolled(window.scrollY > 0)
+    }
+
+    updateShadow()
+    window.addEventListener('scroll', updateShadow, { passive: true })
+
+    return () => {
+      window.removeEventListener('scroll', updateShadow)
+    }
+  }, [])
 
   return (
-    <header className="sticky top-0 z-50 border-b border-blue-100 bg-[#eff6ff]/95 text-ink shadow-sm backdrop-blur">
+    <header className={`sticky top-0 z-50 border-b border-blue-100 bg-[#eff6ff]/95 text-ink backdrop-blur transition-shadow ${scrolled ? 'shadow-lg shadow-ink/20' : 'shadow-none'}`}>
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-2 lg:px-10">
         <Logo />
 
-        <nav className="hidden items-center gap-7 text-sm font-semibold text-ink lg:flex" aria-label="Main">
+        <nav className="hidden items-center gap-7 text-sm font-semibold lg:flex" aria-label="Main">
           {navLinks.map((l) => (
             <a
               key={l.href}

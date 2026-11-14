@@ -38,9 +38,9 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-6xl flex-wrap justify-between gap-3 px-6 py-5 text-sm text-soft lg:px-10">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-6 py-5 pr-24 text-sm text-soft lg:px-10 lg:pr-24">
           <span>© {new Date().getFullYear()} {brand.name}</span>
-          <span>Websites, printing and maintenance</span>
+          <span className="ml-auto">Websites, Maintainance &amp; Printing</span>
         </div>
       </div>
     </footer>

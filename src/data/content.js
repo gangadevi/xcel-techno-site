@@ -2,20 +2,20 @@
 
 export const brand = {
   name: 'Xcel Techno Solutions',
-  email: 'xceltechno.blr@gmail.com',
+  email: 'contact@xceltechno.in',
   phone: '+91 88927 23958', // shown on the page
   phoneLink: '+918892723958', // used for tel: links
   whatsapp: '918892723958', // country code + number, no + or spaces
   whatsappMessage: 'Hi, I would like to enquire about a project.',
   location: 'BTM Layout, Bangalore',
   replyTime: '24 hours',
-  heroImage: '/hero-watermark-subtle.jpg',
+  heroImage: '/hero-banner.png',
 }
 
 // EmailJS settings (emailjs.com). Paste your own IDs here.
 export const emailConfig = {
   serviceId: 'service_a52a4uf',
-  templateId: 'template_31bflen',
+  templateId: 'template_p2sc2nl',
   publicKey: 'ZMs-kSlP03NOGmLoX',
 }
 
@@ -38,8 +38,6 @@ export const about = {
     { title: 'Clear process and pricing', text: 'Know what to expect at every step of your project.', accent: 'bg-blue' },
     { title: 'Support after launch', text: 'Get help keeping your website up to date.', accent: 'bg-cyan' },
   ],
-  callToAction: 'Ready to talk about your project?',
-  buttonText: 'Send an enquiry',
 }
 
 export const services = [
